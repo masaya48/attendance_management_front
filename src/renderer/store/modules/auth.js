@@ -6,8 +6,8 @@ const state = {
 }
 
 const mutations = {
-  login (state, token) {
-    state.token = token
+  login (state, res) {
+    state.token = res.token
     state.auth = true
   },
   logout (state) {
@@ -22,7 +22,7 @@ const actions = {
     Vue.http.get('/auth')
       .then(res => {
         console.log(res)
-        commit('login', 'vubhvubvdvnsuvghviaruoe394')
+        commit('login', res)
       })
   }
 }

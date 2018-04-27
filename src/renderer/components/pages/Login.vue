@@ -10,6 +10,7 @@
 
 <script>
 import { mapActions, mapMutations, mapState } from 'vuex'
+// import router from '@/router'
 
 export default {
   name: 'login',
@@ -25,26 +26,26 @@ export default {
       auth: state => state.auth
     })
   },
-  updated: function () {
-    this.logined()
+  watch: {
+    auth () {
+      if (this.auth) {
+        // router.push('timecard')
+        console.log('認証済み')
+      }
+    }
   },
   methods: {
     ...mapActions({
       login: 'auth/login'
     }),
     ...mapMutations({
-      //
+      logout: 'auth/logout'
     }),
     doLogin () {
       this.login({
         id: this.id,
         password: this.password
       })
-    },
-    logined: function () {
-      if (this.auth) {
-        console.log('logined')
-      }
     }
   }
 }
