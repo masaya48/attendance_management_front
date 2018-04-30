@@ -22,4 +22,10 @@
 
 <style>
   /* CSS */
+  html, body, #app {
+    height: 100%;
+  }
+  body {
+    margin: 0;
+  }
 </style>
