@@ -5,7 +5,7 @@ import Router from 'vue-router'
 import Login from '@/components/Pages/Login'
 import Timecard from '@/components/Pages/Timecard'
 import MonthlyData from '@/components/Pages/MonthlyData'
-import ModificationRequest from '@components/Pages/ModificationRequest'
+import ModificationRequest from '@/components/Pages/ModificationRequest'
 
 Vue.use(Router)
 
