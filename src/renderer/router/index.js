@@ -2,10 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // pages
-import Login from '@/components/Pages/Login'
-import Timecard from '@/components/Pages/Timecard'
-import MonthlyData from '@/components/Pages/MonthlyData'
-import ModificationRequest from '@/components/Pages/ModificationRequest'
+import Login from '@/components/pages/Login'
+import Timecard from '@/components/pages/Timecard'
+import MonthlyData from '@/components/pages/MonthlyData'
+import ModificationRequest from '@/components/pages/ModificationRequest'
 
 Vue.use(Router)
 
