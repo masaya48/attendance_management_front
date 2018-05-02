@@ -1,6 +1,6 @@
 <template>
   <el-container id="app">
-    <side-menu></side-menu>
+    <side-menu v-if="auth"></side-menu>
     <el-container>
       <el-main>
         <router-view></router-view>
@@ -10,22 +10,28 @@
 </template>
 
 <script>
-  import SideMenu from './components/Organisms/SideMenu'
+import SideMenu from './components/organisms/SideMenu'
+import { mapState } from 'vuex'
 
-  export default {
-    name: 'attendance-management',
-    components: {
-      SideMenu
-    }
+export default {
+  name: 'attendance-management',
+  components: {
+    SideMenu
+  },
+  computed: {
+    ...mapState('auth', {
+      auth: state => state.auth
+    })
   }
+}
 </script>
 
 <style>
-  /* CSS */
-  html, body, #app {
-    height: 100%;
-  }
-  body {
-    margin: 0;
-  }
+/* CSS */
+html, body, #app {
+  height: 100%;
+}
+body {
+  margin: 0;
+}
 </style>

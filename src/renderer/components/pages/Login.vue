@@ -10,7 +10,8 @@
 
 <script>
 import { mapActions, mapMutations, mapState } from 'vuex'
-// import router from '@/router'
+import router from '@/router'
+import KEY from '@/constants/key'
 
 export default {
   name: 'login',
@@ -26,12 +27,11 @@ export default {
       auth: state => state.auth
     })
   },
-  watch: {
-    auth () {
-      if (this.auth) {
-        // router.push('timecard')
-        console.log('認証済み')
-      }
+  created () {
+    const token = localStorage.getItem(KEY.TOKEN)
+    if (token) {
+      // 認証済
+      router.replace('timecard')
     }
   },
   methods: {
@@ -45,6 +45,12 @@ export default {
       this.login({
         id: this.id,
         password: this.password
+      }).then(() => {
+        console.log('success')
+        localStorage.setItem(KEY.TOKEN, this.token)
+        router.push('timecard')
+      }).catch(() => {
+        console.log('error')
       })
     }
   }

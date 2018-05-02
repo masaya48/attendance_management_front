@@ -24,6 +24,9 @@ const actions = {
         console.log(res)
         commit('login', res)
       })
+  },
+  logout ({ commit }) {
+    commit('logout')
   }
 }
 
