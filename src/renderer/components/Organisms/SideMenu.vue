@@ -37,7 +37,7 @@ export default {
     }),
     doLogout () {
       this.logout().then(() => {
-        router.replace('')
+        router.push('/')
         localStorage.clear()
       }).catch(() => {
         console.log('error')
