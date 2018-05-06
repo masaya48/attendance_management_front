@@ -1,6 +1,7 @@
 import Vue from 'vue'
 
 const state = {
+  // 出勤フラグ
   isAtWork: false
 }
 
@@ -14,6 +15,7 @@ const mutations = {
 }
 
 const actions = {
+  // 出勤
   atWork ({ commit }, payload) {
     // do something async
     Vue.http.get('/atWork')
@@ -22,6 +24,7 @@ const actions = {
         commit('atWork')
       })
   },
+  // 退勤
   leaveWork ({ commit }) {
     Vue.http.get('/leaveWork')
       .then(res => {

@@ -41,15 +41,18 @@ export default {
     ...mapMutations({
       logout: 'auth/logout'
     }),
+    // ログイン処理
     doLogin () {
       this.login({
         id: this.id,
         password: this.password
       }).then(() => {
+        // 成功
         console.log('success')
         localStorage.setItem(KEY.TOKEN, this.token)
         router.push('timecard')
       }).catch(() => {
+        // 失敗
         console.log('error')
       })
     }

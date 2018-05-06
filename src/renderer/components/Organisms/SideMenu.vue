@@ -35,11 +35,14 @@ export default {
     ...mapActions({
       logout: 'auth/logout'
     }),
+    // ログアウト処理
     doLogout () {
       this.logout().then(() => {
+        // 成功
         router.push('/')
         localStorage.clear()
       }).catch(() => {
+        // 失敗
         console.log('error')
       })
     }
