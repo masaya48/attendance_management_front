@@ -3,5 +3,11 @@
     "id": 11111,
     "name": "fukazawa",
     "token": "bvhuivbvawep2"
+  },
+  "atWork": {
+    "isAtWork": true
+  },
+  "leaveWork": {
+    "isAtWork": false
   }
 }

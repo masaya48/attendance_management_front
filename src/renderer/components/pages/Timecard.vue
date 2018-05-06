@@ -2,11 +2,13 @@
   <!-- please write html -->
   <section>
     <label>現在時刻：{{getNowTime}}</label>
+    <el-button type="primary" @click="clickAtWork">出勤</el-button>
+    <el-button type="primary" @click="clickLeaveWork">退勤</el-button>
   </section>
 </template>
 
 <script>
-// import { mapActions, mapMutations, mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'timecard',
@@ -16,6 +18,9 @@ export default {
     }
   },
   computed: {
+    ...mapState('timecard', {
+      isAtWork: state => state.isAtWork
+    }),
     getNowTime: function () {
       const hour = `00${this.nowTime.getHours()}`.slice(-2)
       const minute = `00${this.nowTime.getMinutes()}`.slice(-2)
@@ -25,8 +30,25 @@ export default {
   },
   created () {
     setInterval(() => {
+      // 1秒毎にnowTimeを更新する
       this.nowTime = new Date()
     }, 1000)
+  },
+  methods: {
+    ...mapActions({
+      atWork: 'timecard/atWork',
+      leaveWork: 'timecard/leaveWork'
+    }),
+    clickAtWork () {
+      this.atWork({
+        nowTime: this.nowTime
+      })
+    },
+    clickLeaveWork () {
+      this.leaveWork({
+        nowTime: this.nowTime
+      })
+    }
   }
 }
 </script>
