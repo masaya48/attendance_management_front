@@ -1,11 +1,26 @@
 <template>
-  <section>
-    <input type="text" v-model="id" placeholder="ID">
-    <input type="password" v-model="password" placeholder="password">
-    <el-button type="primary" @click="doLogin">Login</el-button>
+  <form @submit.prevent="doLogin">
+    <el-input
+      type="text"
+      name="id"
+      v-model="id"
+      v-validate="'required|alpha_dash'"
+      placeholder="ID"></el-input>
+    <span>{{errors.first('id')}}</span>
+    <el-input
+      type="password"
+      name="password"
+      v-model="password"
+      v-validate="'required|alpha_dash'"
+      placeholder="password"></el-input>
+    <span>{{errors.first('password')}}</span>
+    <el-button
+      type="primary"
+      native-type="submit"
+    >Login</el-button>
 
     <div v-if="auth">auth!!!!!!</div>
-  </section>
+  </form>
 </template>
 
 <script>
