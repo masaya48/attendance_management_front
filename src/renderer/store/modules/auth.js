@@ -19,7 +19,7 @@ const mutations = {
 const actions = {
   login ({ commit }, payload) {
     // do something async
-    Vue.http.get('/auth')
+    Vue.http.post('/auth', payload)
       .then(res => {
         console.log(res)
         commit('login', res)

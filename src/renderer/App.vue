@@ -26,12 +26,17 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 /* CSS */
 html, body, #app {
   height: 100%;
 }
 body {
   margin: 0;
+}
+
+.is-danger {
+  border-color: red;
+  color: red;
 }
 </style>
