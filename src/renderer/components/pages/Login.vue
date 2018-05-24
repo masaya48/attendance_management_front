@@ -1,29 +1,29 @@
 <template>
-  <form class="login_form" @submit.prevent="doLogin">
-    <el-input
-      type="text"
-      name="id"
-      :class="{'input': true, 'is-danger': errors.has('id') }"
-      v-model="id"
-      v-validate="'required|alpha_dash'"
-      placeholder="ID"></el-input>
-    <div class="is-danger" v-if="errors.has('id')">{{errors.first('id')}}</div>
-    <el-input
-      type="password"
-      name="password"
-      :class="{'input': true, 'is-danger': errors.has('password') }"
-      v-model="password"
-      v-validate="'required|alpha_dash'"
-      placeholder="password"></el-input>
-    <div class="is-danger" v-if="errors.has('password')">{{errors.first('password')}}</div>
-    <el-button
-      type="primary"
-      native-type="submit"
-      :disabled="errors.count() !== 0"
-    >Login</el-button>
-
-    <div v-if="auth">auth!!!!!!</div>
-  </form>
+  <section class="login-container">
+    <form class="login-container_form" @submit.prevent="doLogin">
+      <el-input
+        type="text"
+        name="id"
+        :class="{'input': true, 'is-danger': errors.has('id') }"
+        v-model="id"
+        v-validate="'required|alpha_dash'"
+        placeholder="ID"></el-input>
+      <div class="is-danger" v-if="errors.has('id')">{{errors.first('id')}}</div>
+      <el-input
+        type="password"
+        name="password"
+        :class="{'input': true, 'is-danger': errors.has('password') }"
+        v-model="password"
+        v-validate="'required|alpha_dash'"
+        placeholder="password"></el-input>
+      <div class="is-danger" v-if="errors.has('password')">{{errors.first('password')}}</div>
+      <el-button
+        type="primary"
+        native-type="submit"
+        :disabled="errors.count() !== 0"
+      >Login</el-button>
+    </form>
+  </section>
 </template>
 
 <script>
@@ -79,7 +79,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.login_form {
+.login-container {
+  height: 100%;
   background-image: url('~@/assets/images/desk.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &_form {
+    width: 60%;
+    height: 30%;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
 }
 </style>
