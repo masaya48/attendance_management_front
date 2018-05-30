@@ -7,7 +7,8 @@
         :class="{'input': true, 'is-danger': errors.has('id') }"
         v-model="id"
         v-validate="'required'"
-        placeholder="従業員番号"></el-input>
+        placeholder="従業員番号"
+        data-vv-as="従業員番号"></el-input>
       <div class="is-danger" v-if="errors.has('id')">{{errors.first('id')}}</div>
       <el-input
         type="password"
@@ -15,7 +16,8 @@
         :class="{'input': true, 'is-danger': errors.has('password') }"
         v-model="password"
         v-validate="'required'"
-        placeholder="password"></el-input>
+        placeholder="パスワード"
+        data-vv-as="パスワード"></el-input>
       <div class="is-danger" v-if="errors.has('password')">{{errors.first('password')}}</div>
       <el-button
         type="primary"
@@ -66,6 +68,8 @@ export default {
         password: this.password
       }).then(() => {
         router.push('timecard')
+      }).catch((error) => {
+        console.log(error)
       })
     }
   }

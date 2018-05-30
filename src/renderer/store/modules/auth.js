@@ -26,6 +26,8 @@ const actions = {
         commit('login', token)
         localStorage.setItem(KEY.TOKEN, token)
         resolve()
+      }).catch((error) => {
+        reject(error)
       })
     })
   },

@@ -5,7 +5,7 @@ export default {
   delay: 0,
   dictionary: null,
   errorBagName: 'errors',
-  events: 'blur',
+  events: 'input|blur',
   fieldsBagName: 'fields',
   i18n: null,
   i18nRootKey: 'validations',
