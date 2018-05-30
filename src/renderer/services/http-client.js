@@ -1,4 +1,5 @@
 import axios from 'axios'
+import store from '@/store'
 
 const client = axios.create({
   baseURL: 'http://localhost:3000'
@@ -17,6 +18,7 @@ export default (Vue, { store }) => {
     return response.data
   }, (error) => {
     // TODO intercept something
+    store.dispatch('notification/show', {title: 'エラー', message: 'エラーですよ'})
     return Promise.reject(error)
   })
 
