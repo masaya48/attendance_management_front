@@ -3,7 +3,8 @@ import Vue from 'vue'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/ja'
-import VeeValidate from 'vee-validate'
+import VeeValidate, { Validator } from 'vee-validate'
+import jaLocale from 'vee-validate/dist/locale/ja'
 
 // fontawesome
 import '@fortawesome/fontawesome-free-webfonts/css/fontawesome.css'
@@ -21,6 +22,9 @@ if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.config.productionTip = false
 Vue.use(ElementUI, { locale })
 Vue.use(httpClient, { store })
+
+Validator.localize('ja', jaLocale)
+console.log(validateConfig)
 Vue.use(VeeValidate, validateConfig)
 
 /* eslint-disable no-new */

@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style lang="scss">
-/* CSS */
+/* 全体に反映させたいstyle */
 html, body, #app {
   height: 100%;
 }
@@ -36,7 +36,10 @@ body {
 }
 
 .is-danger {
-  border-color: red;
   color: red;
+
+  .el-input__inner {
+    border-color: red;
+  }
 }
 </style>
