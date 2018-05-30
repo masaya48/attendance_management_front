@@ -51,6 +51,7 @@ export default {
     const token = localStorage.getItem(KEY.TOKEN)
     if (token) {
       // 認証済
+      this.loggedin(token)
       router.replace('timecard')
     }
   },
@@ -59,6 +60,7 @@ export default {
       login: 'auth/login'
     }),
     ...mapMutations({
+      loggedin: 'auth/login',
       logout: 'auth/logout'
     }),
     // ログイン処理

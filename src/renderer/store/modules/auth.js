@@ -1,5 +1,4 @@
-import Vue from 'vue'
-import * as API from '@/constants/api'
+import * as auth from '@/api/auth'
 import KEY from '@/constants/key'
 
 const state = {
@@ -8,8 +7,8 @@ const state = {
 }
 
 const mutations = {
-  login (state, res) {
-    state.token = res.token
+  login (state, token) {
+    state.token = token
     state.auth = true
   },
   logout (state) {
@@ -21,7 +20,7 @@ const mutations = {
 const actions = {
   login ({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      Vue.http.post(API.LOGIN, payload).then((res) => {
+      auth.login(payload).then((res) => {
         const token = res.results.token
         commit('login', token)
         localStorage.setItem(KEY.TOKEN, token)
