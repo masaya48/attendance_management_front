@@ -6,15 +6,15 @@
         name="id"
         :class="{'input': true, 'is-danger': errors.has('id') }"
         v-model="id"
-        v-validate="'required|alpha_dash'"
-        placeholder="ID"></el-input>
+        v-validate="'required'"
+        placeholder="従業員番号"></el-input>
       <div class="is-danger" v-if="errors.has('id')">{{errors.first('id')}}</div>
       <el-input
         type="password"
         name="password"
         :class="{'input': true, 'is-danger': errors.has('password') }"
         v-model="password"
-        v-validate="'required|alpha_dash'"
+        v-validate="'required'"
         placeholder="password"></el-input>
       <div class="is-danger" v-if="errors.has('password')">{{errors.first('password')}}</div>
       <el-button
@@ -62,16 +62,10 @@ export default {
     // ログイン処理
     doLogin () {
       this.login({
-        id: this.id,
+        employee_no: this.id,
         password: this.password
       }).then(() => {
-        // 成功
-        console.log('success')
-        localStorage.setItem(KEY.TOKEN, this.token)
         router.push('timecard')
-      }).catch(() => {
-        // 失敗
-        console.log('error')
       })
     }
   }
