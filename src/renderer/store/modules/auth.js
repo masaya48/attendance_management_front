@@ -1,4 +1,4 @@
-import * as auth from '@/api/auth'
+import auth from '@/api/auth'
 import KEY from '@/constants/key'
 
 const state = {

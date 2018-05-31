@@ -17,8 +17,9 @@ export default (Vue, { store }) => {
     // TODO intercept something
     return response.data
   }, (error) => {
-    // TODO intercept something
-    // store.dispatch('notification/show', {title: 'エラー', message: 'エラーですよ'})
+    // エラー共通処理
+    const { message, status } = error.response.data
+    store.dispatch('notification/show', {title: status, message: message, type: 'error'})
     return Promise.reject(error)
   })
 
