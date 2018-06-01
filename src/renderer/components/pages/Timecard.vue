@@ -1,8 +1,7 @@
 <template>
-  <!-- please write html -->
   <section>
     <!--  -->
-    <div class="clock-wrap">
+    <!-- <div class="clock-wrap">
       <div class="hour-wrap">
         <div class="digit-top">
           <div class="front">{{getHour}}</div>
@@ -30,7 +29,12 @@
           <div class="front">{{getSecond}}</div>
         </div>
       </div>
-    </div>
+    </div> -->
+  <timer
+    :hour="getHour"
+    :minute="getMinute"
+    :second="getSecond"
+  ></timer>
     <el-button type="primary" @click="clickAtWork">出勤</el-button>
     <el-button type="primary" @click="clickLeaveWork">退勤</el-button>
   </section>
@@ -38,9 +42,13 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import Timer from '../atoms/Timer'
 
 export default {
   name: 'timecard',
+  components: {
+    Timer
+  },
   data () {
     return {
       nowTime: new Date()
@@ -77,13 +85,13 @@ export default {
     // 出勤
     clickAtWork () {
       this.atWork({
-        nowTime: this.nowTime
+        attendance_time: this.nowTime
       })
     },
     // 退勤
     clickLeaveWork () {
       this.leaveWork({
-        nowTime: this.nowTime
+        leave_time: this.nowTime
       })
     }
   }
