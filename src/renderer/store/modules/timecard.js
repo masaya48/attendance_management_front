@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import timecard from '@/api/timecard'
 
 const state = {
   // 出勤フラグ
@@ -17,20 +17,25 @@ const mutations = {
 const actions = {
   // 出勤
   atWork ({ commit }, payload) {
-    // do something async
-    Vue.http.get('/atWork')
-      .then(res => {
-        console.log(res)
+    return new Promise((resolve, reject) => {
+      timecard.atWork(payload).then(() => {
         commit('atWork')
+        resolve()
+      }).catch(error => {
+        reject(error)
       })
+    })
   },
   // 退勤
-  leaveWork ({ commit }) {
-    Vue.http.get('/leaveWork')
-      .then(res => {
-        console.log(res)
+  leaveWork ({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      timecard.leaveWork(payload).then(() => {
         commit('leaveWork')
+        resolve()
+      }).catch(error => {
+        reject(error)
       })
+    })
   }
 }
 
