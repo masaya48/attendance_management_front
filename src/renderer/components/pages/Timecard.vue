@@ -1,40 +1,10 @@
 <template>
   <section>
-    <!--  -->
-    <!-- <div class="clock-wrap">
-      <div class="hour-wrap">
-        <div class="digit-top">
-          <div class="front">{{getHour}}</div>
-          <div class="back">{{getHour}}</div>
-        </div>
-        <div class="digit-bottom">
-          <div class="front">{{getHour}}</div>
-        </div>
-      </div>
-      <div class="min-wrap">
-          <div class="digit-top">
-            <div class="front">{{getMinute}}</div>
-            <div class="back">{{getMinute}}</div>
-          </div>
-          <div class="digit-bottom">
-            <div class="front">{{getMinute}}</div>
-          </div>
-      </div>
-      <div class="sec-wrap">
-        <div class="digit-top">
-          <div class="front">{{getSecond}}</div>
-          <div class="back">{{getSecond}}</div>
-        </div>
-        <div class="digit-bottom">
-          <div class="front">{{getSecond}}</div>
-        </div>
-      </div>
-    </div> -->
-  <timer
-    :hour="getHour"
-    :minute="getMinute"
-    :second="getSecond"
-  ></timer>
+    <timer
+      :hour="getHour"
+      :minute="getMinute"
+      :second="getSecond"
+    ></timer>
     <el-button type="primary" @click="clickAtWork">出勤</el-button>
     <el-button type="primary" @click="clickLeaveWork">退勤</el-button>
   </section>
