@@ -1,6 +1,6 @@
 import axios from 'axios'
-import * as API from '@/constants/api'
-import KEY from '@/constants/key'
+import * as API from '../constants/api'
+import KEY from '../constants/key'
 
 const client = axios.create({
   baseURL: 'http://localhost:3000'
@@ -8,7 +8,8 @@ const client = axios.create({
 
 export default (Vue, { store }) => {
   client.interceptors.request.use((config) => {
-    if (config.url.indexOf(API.NO_TOKEN) !== -1) {
+    console.log(API.NO_TOKEN)
+    if (config.url.indexOf(API.NO_TOKEN) === -1) {
       // urlがpublic以外token付与
       const token = localStorage.getItem(KEY.TOKEN)
       config.headers.Authorization = `Bearer ${token}`
