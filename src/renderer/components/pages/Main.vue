@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import SideMenu from '../organisms/SideMenu'
+import SideMenu from '../molecules/SideMenu'
 
 export default {
   name: 'main-view',

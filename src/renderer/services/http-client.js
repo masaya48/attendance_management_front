@@ -8,11 +8,10 @@ const client = axios.create({
 
 export default (Vue, { store }) => {
   client.interceptors.request.use((config) => {
-    console.log(API.NO_TOKEN)
     if (config.url.indexOf(API.NO_TOKEN) === -1) {
       // urlがpublic以外token付与
       const token = localStorage.getItem(KEY.TOKEN)
-      config.headers.Authorization = `Bearer ${token}`
+      config.headers.Authorization = token
     }
     return config
   }, (error) => {
