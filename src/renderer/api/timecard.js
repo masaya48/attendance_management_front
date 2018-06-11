@@ -10,5 +10,10 @@ export default {
   // 退勤
   leaveWork (payload) {
     return Vue.http.post(API.LEAVE_WORK, payload)
+  },
+
+  // 出勤確認
+  checkAttendance () {
+    return Vue.http.post(API.CHECK_ATTENDANCE)
   }
 }

@@ -2,15 +2,12 @@ import timecard from '@/api/timecard'
 
 const state = {
   // 出勤フラグ
-  isAtWork: false
+  isAttendance: false
 }
 
 const mutations = {
-  atWork (state) {
-    state.isAtWork = true
-  },
-  leaveWork (state) {
-    state.isAtWork = false
+  isAttendance (state, isAttendance) {
+    state.isAttendance = isAttendance
   }
 }
 
@@ -19,23 +16,24 @@ const actions = {
   atWork ({ commit }, payload) {
     return new Promise((resolve, reject) => {
       timecard.atWork(payload).then(() => {
-        commit('atWork')
+        commit('isAttendance', true)
         resolve()
-      }).catch(error => {
-        reject(error)
-      })
+      }).catch(error => reject(error))
     })
   },
   // 退勤
   leaveWork ({ commit }, payload) {
     return new Promise((resolve, reject) => {
       timecard.leaveWork(payload).then(() => {
-        commit('leaveWork')
+        commit('isAttendance', false)
         resolve()
-      }).catch(error => {
-        reject(error)
-      })
+      }).catch(error => reject(error))
     })
+  },
+  // 出勤確認
+  async checkAttendance ({ commit }) {
+    const res = await timecard.checkAttendance()
+    commit('isAttendance', res.isAttendance)
   }
 }
 

@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     ...mapState('timecard', {
-      isAtWork: state => state.isAtWork
+      isAttendance: state => state.isAttendance
     }),
     // 時を取得
     getHour () {
@@ -46,11 +46,15 @@ export default {
       // 1秒毎にnowTimeを更新する
       this.nowTime = new Date()
     }, 1000)
+
+    // 出勤確認を行う
+    this.checkAttendance()
   },
   methods: {
     ...mapActions({
       atWork: 'timecard/atWork',
-      leaveWork: 'timecard/leaveWork'
+      leaveWork: 'timecard/leaveWork',
+      checkAttendance: 'timecard/checkAttendance'
     }),
     // 出勤
     clickAtWork () {
