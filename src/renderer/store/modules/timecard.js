@@ -33,7 +33,7 @@ const actions = {
   // 出勤確認
   async checkAttendance ({ commit }) {
     const res = await timecard.checkAttendance()
-    commit('isAttendance', res.isAttendance)
+    commit('isAttendance', res.results.is_attendance)
   }
 }
 

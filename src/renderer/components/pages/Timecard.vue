@@ -5,8 +5,14 @@
       :minute="getMinute"
       :second="getSecond"
     ></timer>
-    <el-button type="primary" @click="clickAtWork">出勤</el-button>
-    <el-button type="primary" @click="clickLeaveWork">退勤</el-button>
+    <el-button
+      v-if="!isAttendance"
+      type="primary"
+      @click="clickAtWork">出勤</el-button>
+    <el-button
+      v-else
+      type="primary"
+      @click="clickLeaveWork">退勤</el-button>
   </section>
 </template>
 
