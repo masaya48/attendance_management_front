@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <SideMenu></SideMenu>
+    <side-menu></side-menu>
     <el-container>
       <el-main>
         <router-view></router-view>

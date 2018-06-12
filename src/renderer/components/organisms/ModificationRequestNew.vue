@@ -1,12 +1,10 @@
 <template>
-  <el-header>
-    
-  </el-header>
+  <label>aaaaa</label>
 </template>
 
 <script>
 export default {
-  name: 'modifycation-request-new'
+  name: 'modification-request-new'
 }
 </script>
 
