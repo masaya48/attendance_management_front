@@ -62,18 +62,29 @@ export default {
     ...mapActions({
       atWork: 'timecard/atWork',
       leaveWork: 'timecard/leaveWork',
-      checkAttendance: 'timecard/checkAttendance'
+      checkAttendance: 'timecard/checkAttendance',
+      message: 'notification/message'
     }),
     // 出勤
     clickAtWork () {
       this.atWork({
         attendance_time: this.nowTime
+      }).then(() => {
+        this.message({
+          type: 'success',
+          message: '出勤しました'
+        })
       })
     },
     // 退勤
     clickLeaveWork () {
       this.leaveWork({
         leave_time: this.nowTime
+      }).then(() => {
+        this.message({
+          type: 'success',
+          message: '退勤しました'
+        })
       })
     }
   }

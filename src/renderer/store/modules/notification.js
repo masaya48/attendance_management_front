@@ -1,4 +1,4 @@
-import { Notification } from 'element-ui'
+import { Notification, Message } from 'element-ui'
 
 const state = {
 
@@ -8,9 +8,14 @@ const mutations = {
 }
 
 const actions = {
-  show (state, { title, message, type }) {
+  notification (state, { title, message, type }) {
     Notification[type]({
       title: title,
+      message: message
+    })
+  },
+  message (state, {message, type}) {
+    Message[type]({
       message: message
     })
   }
