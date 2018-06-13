@@ -12,6 +12,9 @@ import '@fortawesome/fontawesome-free-webfonts/css/fa-brands.css'
 import '@fortawesome/fontawesome-free-webfonts/css/fa-regular.css'
 import '@fortawesome/fontawesome-free-webfonts/css/fa-solid.css'
 
+// normalize.css
+import 'normalize.css/normalize.css'
+
 import App from './App'
 import router from './router'
 import store from './store'
