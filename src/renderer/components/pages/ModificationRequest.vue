@@ -14,6 +14,7 @@ import ModificationRequestNew from '../organisms/ModificationRequestNew'
 
 export default {
   name: 'modification-request',
+  headerTitle: '修正依頼',
   data () {
     return {
     }

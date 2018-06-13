@@ -22,6 +22,7 @@ import Timer from '../atoms/Timer'
 
 export default {
   name: 'timecard',
+  headerTitle: 'タイムカード',
   components: {
     Timer
   },

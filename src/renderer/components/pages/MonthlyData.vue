@@ -10,6 +10,7 @@
 
 export default {
   name: 'monthly-data',
+  headerTitle: '月次データ',
   data () {
     return {
     }
