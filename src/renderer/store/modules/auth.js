@@ -3,13 +3,18 @@ import KEY from '@/constants/key'
 
 const state = {
   auth: false,
-  token: ''
+  token: '',
+  employee: {
+    name: '',
+    no: ''
+  }
 }
 
 const mutations = {
-  login (state, token) {
-    state.token = token
+  login (state, res) {
+    state.token = res.token
     state.auth = true
+    state.employee = res.employee
   },
   logout (state) {
     state.token = ''
@@ -22,7 +27,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       auth.login(payload).then((res) => {
         const token = res.results.token
-        commit('login', token)
+        commit('login', res.results)
         localStorage.setItem(KEY.TOKEN, token)
         resolve()
       }).catch((error) => {

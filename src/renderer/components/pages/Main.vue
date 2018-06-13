@@ -3,6 +3,7 @@
     <side-menu></side-menu>
     <el-container>
       <el-main>
+        <my-header></my-header>
         <router-view></router-view>
       </el-main>
     </el-container>
@@ -11,11 +12,13 @@
 
 <script>
 import SideMenu from '../molecules/SideMenu'
+import MyHeader from '../molecules/Header'
 
 export default {
   name: 'main-view',
   components: {
-    SideMenu
+    'side-menu': SideMenu,
+    'my-header': MyHeader
   }
 }
 </script>
