@@ -2,8 +2,8 @@
   <el-col :span="8" align="middle" class="employee-info">
     <i class="fas fa-user-circle fa-3x"></i>
     <div class="employee-info__label-container">
-      <label class="employee-info__label-container--no-label">No：{{employee.no}}</label> 
-      <label class="employee-info__label-container--name-label">名前：{{employee.name}}</label>
+      <strong class="employee-info__label-container--name-label">{{employee.name}}</strong>
+      <small class="employee-info__label-container--no-label">No {{employee.no}}</small>
     </div>
   </el-col>
 </template>
@@ -31,10 +31,10 @@ export default {
   &__label-container {
     display: inline-flex;
     flex-direction: column;
+    justify-content: flex-end;
 
     &--no-label {
-      text-align: initial;
-      margin-left: 22px;
+      text-align: end;
     }
     &--name-label {
       margin-left: 10px;
