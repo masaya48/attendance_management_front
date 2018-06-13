@@ -1,6 +1,6 @@
 <template>
   <el-col :span="8" align="middle" class="employee-info">
-    <i class="fas fa-user-circle fa-3x"></i>
+    <i class="fas fa-user-circle fa-2x"></i>
     <div class="employee-info__label-container">
       <strong class="employee-info__label-container--name-label">{{employee.name}}</strong>
       <small class="employee-info__label-container--no-label">No {{employee.no}}</small>

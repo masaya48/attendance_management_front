@@ -3,7 +3,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'attendance-management'
 }
@@ -15,6 +14,10 @@ html, body, #app {
   height: 100%;
 }
 body {
+  color: #666;
+}
+
+h2 {
   margin: 0;
 }
 
