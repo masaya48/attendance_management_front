@@ -23,7 +23,7 @@ export default (Vue, { store }) => {
   }, (error) => {
     // エラー共通処理
     const { message, status } = error.response.data
-    store.dispatch('notification/notifiction', {title: status, message: message, type: 'error'})
+    store.dispatch('notification/notification', {title: status, message: message, type: 'error'})
     return Promise.reject(error)
   })
 
