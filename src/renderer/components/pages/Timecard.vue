@@ -7,12 +7,12 @@
     <div class="timecard__button-container">
       <el-button
         class="timecard__button-container--button"
-        v-if="!isAttendance"
+        :disabled="!isAttendance"
         type="primary"
         @click="clickAtWork">出勤</el-button>
       <el-button
         class="timecard__button-container--button"
-        v-else
+        :disabled="isAttendance"
         type="primary"
         @click="clickLeaveWork">退勤</el-button>
     </div>
@@ -67,9 +67,7 @@ export default {
     }),
     // 出勤
     clickAtWork () {
-      this.atWork({
-        attendance_time: this.nowTime
-      }).then(() => {
+      this.atWork().then(() => {
         this.message({
           type: 'success',
           message: '出勤しました'
@@ -78,9 +76,7 @@ export default {
     },
     // 退勤
     clickLeaveWork () {
-      this.leaveWork({
-        leave_time: this.nowTime
-      }).then(() => {
+      this.leaveWork().then(() => {
         this.message({
           type: 'success',
           message: '退勤しました'
@@ -101,6 +97,7 @@ export default {
   &__button-container {
     width: 100%;
     text-align: center;
+    display: inline-flex;
 
     &--button {
       width: 50%;

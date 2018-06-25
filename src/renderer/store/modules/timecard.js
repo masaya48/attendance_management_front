@@ -13,18 +13,18 @@ const mutations = {
 
 const actions = {
   // 出勤
-  atWork ({ commit }, payload) {
+  atWork ({ commit }) {
     return new Promise((resolve, reject) => {
-      timecard.atWork(payload).then(() => {
+      timecard.atWork().then(() => {
         commit('isAttendance', true)
         resolve()
       }).catch(error => reject(error))
     })
   },
   // 退勤
-  leaveWork ({ commit }, payload) {
+  leaveWork ({ commit }) {
     return new Promise((resolve, reject) => {
-      timecard.leaveWork(payload).then(() => {
+      timecard.leaveWork().then(() => {
         commit('isAttendance', false)
         resolve()
       }).catch(error => reject(error))

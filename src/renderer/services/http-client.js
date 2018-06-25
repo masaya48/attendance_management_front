@@ -7,6 +7,7 @@ const client = axios.create({
 })
 
 export default (Vue, { store }) => {
+  // リクエストのインターセプター
   client.interceptors.request.use((config) => {
     if (config.url.indexOf(API.NO_TOKEN) === -1) {
       // urlがpublic以外token付与
@@ -18,6 +19,7 @@ export default (Vue, { store }) => {
     return Promise.reject(error)
   })
 
+  // レスポンスのインターセプター
   client.interceptors.response.use((response) => {
     return response.data
   }, (error) => {

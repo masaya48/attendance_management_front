@@ -3,13 +3,13 @@ import * as API from '@/constants/api'
 
 export default {
   // 出勤
-  atWork (payload) {
-    return Vue.http.post(API.AT_WORK, payload)
+  atWork () {
+    return Vue.http.post(API.AT_WORK)
   },
 
   // 退勤
-  leaveWork (payload) {
-    return Vue.http.post(API.LEAVE_WORK, payload)
+  leaveWork () {
+    return Vue.http.post(API.LEAVE_WORK)
   },
 
   // 出勤確認
