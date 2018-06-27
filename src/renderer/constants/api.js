@@ -16,3 +16,5 @@ export const AT_WORK = `${PREFIX}/office_hours/regist/at_work`
 export const LEAVE_WORK = `${PREFIX}/office_hours/regist/leave_work`
 // 出勤確認
 export const CHECK_ATTENDANCE = `${PREFIX}/office_hours/check/attendance`
+
+export const GET_MONTHLY_DATA = `${PREFIX}/monthly_data/get`
