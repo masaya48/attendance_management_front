@@ -6,11 +6,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'timer',
-  props: {
-    date: String,
-    time: String
+  computed: {
+    ...mapGetters({
+      date: 'getDisplayDate',
+      time: 'getDisplayTime'
+    })
   }
 }
 </script>
