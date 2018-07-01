@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     ...mapState({
-      headerTitle: state => state.title.headerTitle
+      headerTitle: state => state.common.headerTitle
     })
   }
 }

@@ -1,20 +1,17 @@
 <template>
   <section class="timecard">
-    <timer
-      :time="getTime"
-      :date="getDate"
-    ></timer>
+    <timer></timer>
     <div class="timecard__button-container">
-      <el-button
-        class="timecard__button-container--button"
-        :disabled="!isAttendance"
-        type="primary"
-        @click="clickAtWork">出勤</el-button>
       <el-button
         class="timecard__button-container--button"
         :disabled="isAttendance"
         type="primary"
-        @click="clickLeaveWork">退勤</el-button>
+        @click="handleAtWork">出勤</el-button>
+      <el-button
+        class="timecard__button-container--button"
+        :disabled="!isAttendance"
+        type="primary"
+        @click="handleLeaveWork">退勤</el-button>
     </div>
   </section>
 </template>
@@ -22,7 +19,6 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 import Timer from '../atoms/Timer'
-import { getDisplayTime, getDisplayDate } from '@/services/time'
 
 export default {
   name: 'timecard',
@@ -32,29 +28,15 @@ export default {
   },
   data () {
     return {
-      nowTime: new Date()
+      //
     }
   },
   computed: {
     ...mapState('timecard', {
       isAttendance: state => state.isAttendance
-    }),
-    // 時間を取得
-    getTime () {
-      return getDisplayTime(this.nowTime)
-    },
-    // 日付を取得
-    // 表示時に日付またぎを考慮してcomputedに配置
-    getDate () {
-      return getDisplayDate(this.nowTime)
-    }
+    })
   },
   created () {
-    setInterval(() => {
-      // 1秒毎にnowTimeを更新する
-      this.nowTime = new Date()
-    }, 1000)
-
     // 出勤確認を行う
     this.checkAttendance()
   },
@@ -66,7 +48,7 @@ export default {
       message: 'notification/message'
     }),
     // 出勤
-    clickAtWork () {
+    handleAtWork () {
       this.atWork().then(() => {
         this.message({
           type: 'success',
@@ -75,7 +57,7 @@ export default {
       })
     },
     // 退勤
-    clickLeaveWork () {
+    handleLeaveWork () {
       this.leaveWork().then(() => {
         this.message({
           type: 'success',

@@ -21,6 +21,10 @@ export default (Vue, { store }) => {
 
   // レスポンスのインターセプター
   client.interceptors.response.use((response) => {
+    if (!store.state.common.date) {
+      // サーバー時間を保持
+      store.dispatch('setDate', new Date(response.headers.date))
+    }
     return response.data
   }, (error) => {
     // エラー共通処理
