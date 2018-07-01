@@ -43,6 +43,7 @@
 
 <script>
  import { mapActions, mapState } from 'vuex'
+ import { getDisplayTime } from '@/services/time'
  // import { constants } from 'http2';
 
 // import { mapActions } from 'vuex'
@@ -88,12 +89,9 @@ export default {
          get_data_month: this.thisMonth
        }).then(() => {
          this.set_date_table()
-         // this.tableData[0]['date'] = this.monthlyData['2018-06-24']['start_time']
-         // router.push('timecard')
        }).catch((error) => {
          console.log(error)
        })
-       // this.tableData[0]['date'] = 'poi'
      },
      // 月の日数の取得
      day_num (date) {
@@ -115,14 +113,50 @@ export default {
      // 月の日数に合わせたテーブル行の表示
      set_date_table () {
        const dayNum = this.day_num(this.thisMonth)
-       console.log(dayNum)
-       for (var i = 0; i < dayNum; i++) {
+       for (let i = 0; i < dayNum; i++) {
+         const oneDate = new Date(this.thisMonth.getFullYear(), this.thisMonth.getMonth(), i + 1)
+         let attendanceTime = ''
+         let leaveTime = ''
+         let remarks = ''
+         for (let k = 0; k < this.monthlyData.length; k++) {
+           if (this.check_date(oneDate, new Date(this.monthlyData[k]['working_date']))) {
+             attendanceTime = new Date(this.monthlyData[k]['start_time'])
+             leaveTime = new Date(this.monthlyData[k]['end_time'])
+             remarks = this.monthlyData[k]['remarks']
+             console.log('testetst')
+             console.log(attendanceTime)
+           }
+         }
+         if (attendanceTime !== '') {
+           attendanceTime = new Date(attendanceTime)
+           attendanceTime = getDisplayTime(attendanceTime)
+         }
+         if (leaveTime !== '') {
+           leaveTime = new Date(leaveTime)
+           leaveTime = getDisplayTime(leaveTime)
+         }
+         // const worked_date =
          const dayDict = {date: i + 1 + '日',
-           attendance_time: '',
-           leave_time: '',
-           remarks: ''
+           attendance_time: attendanceTime,
+           leave_time: leaveTime,
+           remarks: remarks
          }
          this.tableData.push(dayDict)
+       }
+     },
+     // 日付のみの判定
+     check_date (oneDate, workedDate) {
+       const oneDateYear = oneDate.getFullYear()
+       const oneDateMonth = oneDate.getMonth() + 1
+       const oneDateDay = oneDate.getDate()
+       const workedDateYear = workedDate.getFullYear()
+       const workedDateMonth = workedDate.getMonth() + 1
+       const workedDateDay = workedDate.getDate()
+       // 日付が一致しているならtrue
+       if (oneDateYear === workedDateYear && oneDateMonth === workedDateMonth && oneDateDay === workedDateDay) {
+         return true
+       } else {
+         return false
        }
      }
    }

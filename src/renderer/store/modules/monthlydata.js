@@ -2,7 +2,7 @@ import getData from '@/api/getMonthlyData'
 // import KEY from '@/constants/key'
 
 const state = {
-  monthlyData: {}
+  monthlyData: []
 }
 
 const mutations = {
