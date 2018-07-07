@@ -33,11 +33,6 @@
     label="備考">
   </el-table-column>
   </el-table>
-  <el-button
-        type="primary"
-        native-type="submit"
-        @click="set_monthly_data"
-  >test</el-button>
 </section>
 </template>
 
@@ -78,6 +73,9 @@ export default {
      ...mapState('monthlydata', {
        monthlyData: state => state.monthlyData
      })
+   },
+   created () {
+     this.set_monthly_data()
    },
    methods: {
      ...mapActions({
@@ -123,8 +121,6 @@ export default {
              attendanceTime = new Date(this.monthlyData[k]['start_time'])
              leaveTime = new Date(this.monthlyData[k]['end_time'])
              remarks = this.monthlyData[k]['remarks']
-             console.log('testetst')
-             console.log(attendanceTime)
            }
          }
          if (attendanceTime !== '') {
