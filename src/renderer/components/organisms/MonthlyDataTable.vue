@@ -170,6 +170,7 @@ export default {
      chanege_selectbox () {
        this.thisMonth = new Date(this.value)
        this.set_selectbox()
+       this.set_monthly_data()
      }
    }
  }
