@@ -1,7 +1,7 @@
 <template>
   <!-- please write html -->
   <section>
-    <el-select v-model="value" placeholder="Select" @change="set_monthly_data">
+    <el-select v-model="value" placeholder="Select" @change="chanege_selectbox">
     <el-option
       v-for="item in options"
       :key="item.value"
@@ -38,7 +38,7 @@
 
 <script>
  import { mapActions, mapState } from 'vuex'
- import { getDisplayTime } from '@/services/time'
+ import { getDisplayTime, getDisplayMonth } from '@/services/time'
  // import { constants } from 'http2';
 
 // import { mapActions } from 'vuex'
@@ -76,6 +76,8 @@ export default {
    },
    created () {
      this.set_monthly_data()
+     this.value = getDisplayMonth(this.thisMonth)
+     this.set_selectbox()
    },
    methods: {
      ...mapActions({
@@ -86,6 +88,7 @@ export default {
          // 仮
          get_data_month: this.thisMonth
        }).then(() => {
+         this.tableData = []
          this.set_date_table()
        }).catch((error) => {
          console.log(error)
@@ -154,6 +157,19 @@ export default {
        } else {
          return false
        }
+     },
+     // セレクトボックスの値のセット
+     set_selectbox () {
+       for (var i = 4; i >= 0; i--) {
+         const setDate = new Date(this.thisMonth.getFullYear(), this.thisMonth.getMonth() + 1 - i, 1)
+         this.options[i]['value'] = setDate + ''
+         this.options[i]['label'] = getDisplayMonth(setDate) + ''
+       }
+     },
+     // セレクトボックスの内容が変えられたら
+     chanege_selectbox () {
+       this.thisMonth = new Date(this.value)
+       this.set_selectbox()
      }
    }
  }

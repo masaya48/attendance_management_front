@@ -24,6 +24,16 @@ export const getDisplayDate = (date) => {
 }
 
 /**
+ * 表示用の日付取得(年月まで)
+ * @param {Date} date Dateオブジェクト
+ */
+export const getDisplayMonth = (date) => {
+  const year = zeroPadding(date.getFullYear(), 4)
+  const month = zeroPadding(date.getMonth() + 1, 2)
+  return `${year}年${month}月`
+}
+
+/**
  * ゼロパディング
  * @param {number} num ターゲット数値
  * @param {number} digit 桁数
