@@ -34,6 +34,15 @@ export const getDisplayMonth = (date) => {
 }
 
 /**
+ * 表示用の曜日取得
+ * @param {Date} date Dateオブジェクト
+ */
+export const getDisplayDay = (date) => {
+  const day = week[date.getDay()]
+  return `${day}`
+}
+
+/**
  * ゼロパディング
  * @param {number} num ターゲット数値
  * @param {number} digit 桁数
