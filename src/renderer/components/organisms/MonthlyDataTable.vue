@@ -38,7 +38,7 @@
 
 <script>
  import { mapActions, mapState } from 'vuex'
- import { getDisplayTime, getDisplayMonth } from '@/services/time'
+ import { getDisplayTime, getDisplayMonth, getDisplayDay } from '@/services/time'
  // import { constants } from 'http2';
 
 // import { mapActions } from 'vuex'
@@ -119,6 +119,8 @@ export default {
          let attendanceTime = ''
          let leaveTime = ''
          let remarks = ''
+         let dispAttendanceTime = ''
+         let dispLeaveTime = ''
          for (let k = 0; k < this.monthlyData.length; k++) {
            if (this.check_date(oneDate, new Date(this.monthlyData[k]['working_date']))) {
              attendanceTime = new Date(this.monthlyData[k]['start_time'])
@@ -128,16 +130,16 @@ export default {
          }
          if (attendanceTime !== '') {
            attendanceTime = new Date(attendanceTime)
-           attendanceTime = getDisplayTime(attendanceTime)
+           dispAttendanceTime = getDisplayTime(attendanceTime)
          }
          if (leaveTime !== '') {
            leaveTime = new Date(leaveTime)
-           leaveTime = getDisplayTime(leaveTime)
+           dispLeaveTime = getDisplayTime(leaveTime)
          }
          // const worked_date =
-         const dayDict = {date: i + 1 + '日',
-           attendance_time: attendanceTime,
-           leave_time: leaveTime,
+         const dayDict = {date: i + 1 + '日 ' + getDisplayDay(oneDate),
+           attendance_time: dispAttendanceTime,
+           leave_time: dispLeaveTime,
            remarks: remarks
          }
          this.tableData.push(dayDict)
