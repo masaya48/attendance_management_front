@@ -29,6 +29,8 @@ const actions = {
         const token = res.results.token
         commit('login', res.results)
         localStorage.setItem(KEY.TOKEN, token)
+        localStorage.setItem(KEY.EMPLOYEE_NO, res.results.employee.no)
+        localStorage.setItem(KEY.EMPLOYEE_NAME, res.results.employee.name)
         resolve()
       }).catch((error) => {
         reject(error)

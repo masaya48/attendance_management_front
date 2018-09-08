@@ -33,12 +33,16 @@
     label="備考">
   </el-table-column>
   </el-table>
+  <el-button type="info" 
+  @click="outputExcel" plain>
+  Excel出力
+  </el-button>
 </section>
 </template>
 
 <script>
  import { mapActions, mapState } from 'vuex'
- import { getDisplayTime, getDisplayMonth, getDisplayDay } from '@/services/time'
+ import { getDisplayTime, getDisplayMonth, getDisplayDayJpanese } from '@/services/time'
  // import { constants } from 'http2';
 
 // import { mapActions } from 'vuex'
@@ -81,7 +85,8 @@ export default {
    },
    methods: {
      ...mapActions({
-       monthly_data: 'monthlydata/getMonthlyData'
+       monthly_data: 'monthlydata/getMonthlyData',
+       get_excel: 'monthlydata/getMonthlyDataExcel'
      }),
      set_monthly_data () {
        this.monthly_data({
@@ -124,7 +129,11 @@ export default {
          for (let k = 0; k < this.monthlyData.length; k++) {
            if (this.check_date(oneDate, new Date(this.monthlyData[k]['working_date']))) {
              attendanceTime = new Date(this.monthlyData[k]['start_time'])
-             leaveTime = new Date(this.monthlyData[k]['end_time'])
+             if (this.monthlyData[k]['end_time']) {
+               leaveTime = new Date(this.monthlyData[k]['end_time'])
+             } else {
+               leaveTime = ''
+             }
              remarks = this.monthlyData[k]['remarks']
            }
          }
@@ -137,7 +146,7 @@ export default {
            dispLeaveTime = getDisplayTime(leaveTime)
          }
          // const worked_date =
-         const dayDict = {date: i + 1 + '日 ' + getDisplayDay(oneDate),
+         const dayDict = {date: i + 1 + '日 ' + getDisplayDayJpanese(oneDate),
            attendance_time: dispAttendanceTime,
            leave_time: dispLeaveTime,
            remarks: remarks
@@ -173,6 +182,12 @@ export default {
        this.thisMonth = new Date(this.value)
        this.set_selectbox()
        this.set_monthly_data()
+     },
+     outputExcel () {
+       console.log('excell')
+       this.get_excel({
+         get_data_month: this.thisMonth
+       })
      }
    }
  }

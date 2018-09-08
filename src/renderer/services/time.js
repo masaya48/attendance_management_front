@@ -10,6 +10,7 @@ export const getDisplayTime = (date) => {
 }
 
 const week = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+const weekJpn = ['日', '月', '火', '水', '木', '金', '土']
 
 /**
  * 表示用の日付取得
@@ -39,6 +40,15 @@ export const getDisplayMonth = (date) => {
  */
 export const getDisplayDay = (date) => {
   const day = week[date.getDay()]
+  return `${day}`
+}
+
+/**
+ * 表示用の曜日取得  日本語
+ * @param {Date} date Dateオブジェクト
+ */
+export const getDisplayDayJpanese = (date) => {
+  const day = weekJpn[date.getDay()]
   return `${day}`
 }
 

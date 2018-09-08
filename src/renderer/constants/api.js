@@ -17,4 +17,7 @@ export const LEAVE_WORK = `${PREFIX}/office_hours/regist/leave_work`
 // 出勤確認
 export const CHECK_ATTENDANCE = `${PREFIX}/office_hours/check/attendance`
 
+// 月次データ表示
 export const GET_MONTHLY_DATA = `${PREFIX}/monthly_data/get`
+// エクセル出力
+export const GET_MONTHLY_DATA_EXCEL = `${PREFIX}/monthly_data/excel`

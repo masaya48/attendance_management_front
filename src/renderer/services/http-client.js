@@ -2,11 +2,10 @@ import axios from 'axios'
 import * as API from '../constants/api'
 import KEY from '../constants/key'
 
-const client = axios.create({
-  baseURL: 'http://localhost:3000'
-})
+// ルートURL
+const baseURL = 'http://localhost:3000'
 
-export default (Vue, { store }) => {
+const setRequestInterceptor = (client) => {
   // リクエストのインターセプター
   client.interceptors.request.use((config) => {
     if (config.url.indexOf(API.NO_TOKEN) === -1) {
@@ -18,7 +17,9 @@ export default (Vue, { store }) => {
   }, (error) => {
     return Promise.reject(error)
   })
+}
 
+const setResponseInterceptor = (client, { store }) => {
   // レスポンスのインターセプター
   client.interceptors.response.use((response) => {
     if (!store.state.common.date) {
@@ -32,6 +33,43 @@ export default (Vue, { store }) => {
     store.dispatch('notification/notification', {title: status, message: message, type: 'error'})
     return Promise.reject(error)
   })
+}
 
-  Vue.http = Vue.prototype.$http = client
+const setInterceptor = (client, { store }) => {
+  // リクエストのインターセプター登録
+  setRequestInterceptor(client)
+
+  // レスポンスのインターセプター登録
+  setResponseInterceptor(client, { store })
+}
+
+const getClient = ({ store }) => {
+  // 共通用axiosインスタンス生成
+  const client = axios.create({
+    baseURL: baseURL
+  })
+  // インターセプター設定
+  setInterceptor(client, { store })
+  return client
+}
+
+const getExcelClient = ({ store }) => {
+  // Excel用axiosインスタンス生成
+  const client = axios.create({
+    baseURL: baseURL,
+    responseType: 'blob',
+    headers: {
+      'Content-Type': 'application/vnd.ms-excel'
+    }
+  })
+  // インターセプター設定
+  setInterceptor(client, { store })
+  return client
+}
+
+export default (Vue, { store }) => {
+  // 共通用axios登録
+  Vue.http = Vue.prototype.$http = getClient({ store })
+  // Excel用axios登録
+  Vue.http4Excel = Vue.prototype.$http4Excel = getExcelClient({ store })
 }
